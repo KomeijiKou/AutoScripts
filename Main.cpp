@@ -1,7 +1,8 @@
 #include "a.h"
-//#include "AutoMessageSend.h"
-//#include "PointMetrix.h"
+#include "AutoMessageSend.h"
+#include "PointMetrix.h"
 #include "ArkAuto.h"
+
 #pragma warning(disable:4996)
 #pragma comment(linker,"/entry:mainCRTStartup /subsystem:windows")
 
@@ -20,7 +21,7 @@ int main(int argc, _TCHAR*argv[])
 	cout << "ArkNights_Auto-ÒÑÔÝÍ£>" << endl;
 	while (true)
 	{
-		if (-32767 == GetAsyncKeyState(VK_ESCAPE))
+		if (-32767 == GetAsyncKeyState(VK_ESCAPE) && A.loopCon)
 		{
 			A.loopCon = false;
 			system("cls");
@@ -34,7 +35,7 @@ int main(int argc, _TCHAR*argv[])
 		Sleep(20);
 	}
 
-
+	
 	
 	getchar();
 }

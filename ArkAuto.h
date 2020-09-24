@@ -25,10 +25,14 @@ private:
 	EventCheck Finish1;
 	EventCheck Finish2;
 
+	EventCheck OF4Start;
+
 	int StartCheck1;
 	int StartCheck2;
 	int FinishCheck1;
 	int FinishCheck2;
+
+	int OF4StartCheck;
 
 	void MouseClick(int x, int y)
 	{
@@ -73,6 +77,8 @@ ArkAuto::ArkAuto()
 	Finish2.B = Finish2.BGR >> 16;
 	Finish2.G = Finish2.BGR >> 8 & 0xff;
 	Finish2.R = Finish2.BGR & 0xff;
+
+	OF4Start = {1622, 922, 11826125, 117, 112, 201};
 }
 
 ArkAuto::~ArkAuto()
@@ -90,6 +96,8 @@ void ArkAuto::StartArkAuto()
 		FinishCheck1 = GetPixel(DC, Finish1.X, Finish1.Y);
 		FinishCheck2 = GetPixel(DC, Finish2.X, Finish2.Y);
 
+		OF4StartCheck = GetPixel(DC, OF4Start.X, OF4Start.Y);
+
 		if ((Start1.B >= (StartCheck1 >> 16) - 5 && Start1.B <= (StartCheck1 >> 16) + 5) && (Start1.G >= (StartCheck1 >> 8 & 0xff) - 5 && Start1.G <= (StartCheck1 >> 8 & 0xff) + 5) && (Start1.R >= (StartCheck1 & 0xff) - 5 && Start1.R <= (StartCheck1 & 0xff) + 5))
 		{
 			MouseClick(Start1.X, Start1.Y);
@@ -98,9 +106,13 @@ void ArkAuto::StartArkAuto()
 		{
 			MouseClick(Start2.X, Start2.Y);
 		}
-		else if(((Finish1.B >= (FinishCheck1 >> 16) - 5 && Finish1.B <= (FinishCheck1 >> 16) + 5) && (Finish1.G >= (FinishCheck1 >> 8 & 0xff) - 5 && Finish1.G <= (FinishCheck1 >> 8 & 0xff) + 5) && (Finish1.R >= (FinishCheck1 & 0xff) - 5 && Finish1.R <= (FinishCheck1 & 0xff) + 5)) && FinishCheck2 >> 16 >= 250 && FinishCheck2 >> 8 & 0xff >= 250 && FinishCheck2 & 0xff >= 250)
+		else if((FinishCheck2 >> 16) >= 250 && (FinishCheck2 >> 8 & 0xff) >= 250 && (FinishCheck2 & 0xff) >= 250)
 		{
 			MouseClick(Finish1.X, Finish1.Y);
+		}
+		else if(OF4StartCheck == OF4Start.BGR)
+		{
+			MouseClick(OF4Start.X, OF4Start.Y);
 		}
 		Sleep(2000);
 	}
