@@ -9,6 +9,9 @@
 
 
 void PrintUI(const char* ExeName, const char* UIName, const char* color, short x, short y, WORD UIWide, WORD UIHeigh);
+
+
+void bufClear();
 unsigned _stdcall AutoThread(void* Parg);
 
 int main(int argc, _TCHAR*argv[])
@@ -17,16 +20,16 @@ int main(int argc, _TCHAR*argv[])
 	
 	/****************************************************************************************************************************************************************/
 	ArkAuto A;
-	printf("F1¿ªÊ¼£¬ESCÔİÍ£>\n");
-	cout << "ArkNights_Auto-ÒÑÔİÍ£>" << endl;
+	printf("F1ï¿½ï¿½Ê¼ï¿½ï¿½ESCï¿½ï¿½Í£>\n");
+	cout << "ArkNights_Auto-ï¿½ï¿½ï¿½ï¿½Í£>" << endl;
 	while (true)
 	{
 		if (-32767 == GetAsyncKeyState(VK_ESCAPE) && A.loopCon)
 		{
 			A.loopCon = false;
 			system("cls");
-			printf("F1¿ªÊ¼£¬ESCÔİÍ£>\n");
-			cout << "ArkNights_Auto-ÕıÔÚÍ£Ö¹...>" << endl;
+			printf("F1ï¿½ï¿½Ê¼ï¿½ï¿½ESCï¿½ï¿½Í£>\n");
+			cout << "ArkNights_Auto-ï¿½ï¿½ï¿½ï¿½Í£Ö¹...>" << endl;
 		}
 		if (-32767 == GetAsyncKeyState(VK_F1) && !A.loopCon )
 		{
@@ -83,11 +86,17 @@ void PrintUI(const char* ExeName, const char* UIName, const char* color, short x
 unsigned _stdcall AutoThread(void* Parg)
 {
 	system("cls");
-	printf("F1¿ªÊ¼£¬ESCÔİÍ£>\n");
-	cout << "ArkNights_Auto-ÔËĞĞÖĞ>" << endl;
+	printf("F1ï¿½ï¿½Ê¼ï¿½ï¿½ESCï¿½ï¿½Í£>\n");
+	cout << "ArkNights_Auto-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½>" << endl;
 	((ArkAuto*)Parg)->StartArkAuto();
 	system("cls");
-	printf("F1¿ªÊ¼£¬ESCÔİÍ£>\n");
-	cout << "ArkNights_Auto-ÒÑÔİÍ£>" << endl;
+	printf("F1ï¿½ï¿½Ê¼ï¿½ï¿½ESCï¿½ï¿½Í£>\n");
+	cout << "ArkNights_Auto-ï¿½ï¿½ï¿½ï¿½Í£>" << endl;
 	return 0;
+}
+
+void bufClear()
+{
+	char c;
+	while((c = getchar()) != '\n'); 
 }
