@@ -50,34 +50,12 @@ ArkAuto::ArkAuto()
 	loopCon = false;
 	DC = GetDC(0);
 
-	Start1.X = 1577;
-	Start1.Y = 924;
-	Start1.BGR = 13931008;
-	Start1.B = Start1.BGR >> 16;
-	Start1.G = Start1.BGR >> 8 & 0xff;
-	Start1.R = Start1.BGR & 0xff;
+	Start1 = {1577, 924, 13931008, 13931008 >> 16, 13931008 >> 8 & 0xff, 13931008 & 0xff};
+	Start2 = {1508, 910, 18113, 18113 >> 16, 18113 >> 8 & 0xff, 18113 & 0xff};
+	Finish1 = {1410, 712, 169727, 169727 >> 16, 169727 >> 8 & 0xff, 169727 & 0xff};
+	Finish2 = {524, 921, 16777215, 16777215 >> 16, 16777215 >> 8 & 0xff, 16777215 & 0xff};
 
-	Start2.X = 1508;
-	Start2.Y = 910;
-	Start2.BGR = 18113;
-	Start2.B = Start2.BGR >> 16;
-	Start2.G = Start2.BGR >> 8 & 0xff;
-	Start2.R = Start2.BGR & 0xff;
-
-	Finish1.X = 1410;
-	Finish1.Y = 712;
-	Finish1.BGR = 169727;
-	Finish1.B = Finish1.BGR >> 16;
-	Finish1.G = Finish1.BGR >> 8 & 0xff;
-	Finish1.R = Finish1.BGR & 0xff;
-
-	Finish2.X = 524;
-	Finish2.Y = 921;
-	Finish2.BGR = 16777215;
-	Finish2.B = Finish2.BGR >> 16;
-	Finish2.G = Finish2.BGR >> 8 & 0xff;
-	Finish2.R = Finish2.BGR & 0xff;
-
+	/* Event only */
 	OF4Start = {1622, 922, 11826125, 117, 112, 201};
 }
 
