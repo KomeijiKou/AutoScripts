@@ -8,7 +8,7 @@
 
 
 
-void PrintUI(const char* ExeName, const char* UIName, const char* color, short x, short y, WORD UIWide, WORD UIHeigh);
+void PrintWindow(const char* ExeName, const char* UIName, const char* color, short x, short y, WORD UIWide, WORD UIHeigh);
 
 
 void bufClear();
@@ -16,7 +16,7 @@ unsigned _stdcall AutoThread(void* Parg);
 
 int main(int argc, _TCHAR*argv[])
 {
-	PrintUI("ArkNightsAuto.exe", "ArkNightsAuto_V1.0.0_Beta", "color 0A", 500, 500, 800, 800);
+	PrintWindow("ArkNightsAuto.exe", "ArkNightsAuto_V1.0.0_Beta", "color 0A", 500, 500, 800, 800);
 	
 	/****************************************************************************************************************************************************************/
 	ArkAuto A;
@@ -47,7 +47,7 @@ int main(int argc, _TCHAR*argv[])
 
 
 
-void PrintUI(const char* ExeName, const char* UIName, const char* color, short x, short y, WORD UIWide, WORD UIHeigh)
+void PrintWindow(const char* ExeName, const char* UIName, const char* color, short x, short y, WORD UIWide, WORD UIHeigh)
 {
 	AllocConsole();
 	freopen("conin$", "r+t", stdin);
