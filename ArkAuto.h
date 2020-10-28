@@ -25,7 +25,7 @@ private:
 	EventCheck Finish1;
 	EventCheck Finish2;
 
-	EventCheck OF4Start;
+	//EventCheck OF4Start;
 
 	int StartCheck1;
 	int StartCheck2;
@@ -56,7 +56,7 @@ ArkAuto::ArkAuto()
 	Finish2 = {524, 921, 16777215, 16777215 >> 16, 16777215 >> 8 & 0xff, 16777215 & 0xff};
 
 	/* Event only */
-	OF4Start = {1622, 922, 11826125, 117, 112, 201};
+	//OF4Start = {1622, 922, 11826125, 117, 112, 201};
 }
 
 ArkAuto::~ArkAuto()
@@ -76,22 +76,30 @@ void ArkAuto::StartArkAuto()
 
 		OF4StartCheck = GetPixel(DC, OF4Start.X, OF4Start.Y);
 
-		if ((Start1.B >= (StartCheck1 >> 16) - 5 && Start1.B <= (StartCheck1 >> 16) + 5) && (Start1.G >= (StartCheck1 >> 8 & 0xff) - 5 && Start1.G <= (StartCheck1 >> 8 & 0xff) + 5) && (Start1.R >= (StartCheck1 & 0xff) - 5 && Start1.R <= (StartCheck1 & 0xff) + 5))
+		if (matchPointCheck(Start1, StartCheck1, 5))
 		{
 			MouseClick(Start1.X, Start1.Y);
 		}
-		else if ((Start2.B >= (StartCheck2 >> 16) - 5 && Start2.B <= (StartCheck2 >> 16) + 5) && (Start2.G >= (StartCheck2 >> 8 & 0xff) - 5 && Start2.G <= (StartCheck2 >> 8 & 0xff) + 5) && (Start2.R >= (StartCheck2 & 0xff) - 5 && Start2.R <= (StartCheck2 & 0xff) + 5))
+		else if (matchPointCheck(Start2, StartCheck2, 5))
 		{
 			MouseClick(Start2.X, Start2.Y);
 		}
-		else if((FinishCheck2 >> 16) >= 250 && (FinishCheck2 >> 8 & 0xff) >= 250 && (FinishCheck2 & 0xff) >= 250)
+		else if(matchPointCheck(Finish1, FinishCheck1, 5) && matchPointCheck(Finish2, FinishCheck2, 5))
 		{
 			MouseClick(Finish1.X, Finish1.Y);
 		}
+		/*
 		else if(OF4StartCheck == OF4Start.BGR)
 		{
 			MouseClick(OF4Start.X, OF4Start.Y);
-		}
+		}*/
 		Sleep(2000);
+	}
+
+	bool matchPointCheck(EventCheck ev, int scanBGR, int devi)
+	{
+		return (ev.B >= (scanBGR >> 16) - devi && ev.B <= (scanBGR >> 16) + devi) 
+				&& (ev.G >= (scanBGR >> 8 & 0xff) - devi && ev.G <= (scanBGR >> 8 & 0xff) + devi)
+				&& (ev.R >= (scanBGR & 0xff) - devi && ev.R <= (scanBGR & 0xff) + devi); 
 	}
 }
