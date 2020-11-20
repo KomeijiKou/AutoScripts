@@ -34,6 +34,12 @@ private:
 
 	int OF4StartCheck;
 
+	bool matchPointCheck(EventCheck ev, int scanBGR, int devi)
+	{
+		return (ev.B >= (scanBGR >> 16) - devi && ev.B <= (scanBGR >> 16) + devi)
+			&& (ev.G >= (scanBGR >> 8 & 0xff) - devi && ev.G <= (scanBGR >> 8 & 0xff) + devi)
+			&& (ev.R >= (scanBGR & 0xff) - devi && ev.R <= (scanBGR & 0xff) + devi);
+	}
 	void MouseClick(int x, int y)
 	{
 		SetCursorPos(x, y);
@@ -74,7 +80,7 @@ void ArkAuto::StartArkAuto()
 		FinishCheck1 = GetPixel(DC, Finish1.X, Finish1.Y);
 		FinishCheck2 = GetPixel(DC, Finish2.X, Finish2.Y);
 
-		OF4StartCheck = GetPixel(DC, OF4Start.X, OF4Start.Y);
+		//OF4StartCheck = GetPixel(DC, OF4Start.X, OF4Start.Y);
 
 		if (matchPointCheck(Start1, StartCheck1, 5))
 		{
@@ -94,12 +100,5 @@ void ArkAuto::StartArkAuto()
 			MouseClick(OF4Start.X, OF4Start.Y);
 		}*/
 		Sleep(2000);
-	}
-
-	bool matchPointCheck(EventCheck ev, int scanBGR, int devi)
-	{
-		return (ev.B >= (scanBGR >> 16) - devi && ev.B <= (scanBGR >> 16) + devi) 
-				&& (ev.G >= (scanBGR >> 8 & 0xff) - devi && ev.G <= (scanBGR >> 8 & 0xff) + devi)
-				&& (ev.R >= (scanBGR & 0xff) - devi && ev.R <= (scanBGR & 0xff) + devi); 
-	}
+	}	
 }

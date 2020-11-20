@@ -1,6 +1,4 @@
 #include "a.h"
-#include "AutoMessageSend.h"
-#include "PointMetrix.h"
 #include "ArkAuto.h"
 
 #pragma warning(disable:4996)
@@ -20,16 +18,16 @@ int main(int argc, _TCHAR*argv[])
 	
 	/****************************************************************************************************************************************************************/
 	ArkAuto A;
-	printf("F1��ʼ��ESC��ͣ>\n");
-	cout << "ArkNights_Auto-����ͣ>" << endl;
+	printf("F1-Start, ESC-Stop>\n");
+	cout << "ArkNights_Auto-Stop>" << endl;
 	while (true)
 	{
 		if (-32767 == GetAsyncKeyState(VK_ESCAPE) && A.loopCon)
 		{
 			A.loopCon = false;
 			system("cls");
-			printf("F1��ʼ��ESC��ͣ>\n");
-			cout << "ArkNights_Auto-����ֹͣ...>" << endl;
+			printf("F1-Start, ESC-Stop>\n");
+			cout << "ArkNights_Auto-Pause...." << endl;
 		}
 		if (-32767 == GetAsyncKeyState(VK_F1) && !A.loopCon )
 		{
@@ -86,12 +84,12 @@ void PrintWindow(const char* ExeName, const char* UIName, const char* color, sho
 unsigned _stdcall AutoThread(void* Parg)
 {
 	system("cls");
-	printf("F1��ʼ��ESC��ͣ>\n");
-	cout << "ArkNights_Auto-������>" << endl;
+	printf("F1-Start, ESC-Stop>\n");
+	cout << "ArkNights_Auto-Start>" << endl;
 	((ArkAuto*)Parg)->StartArkAuto();
 	system("cls");
-	printf("F1��ʼ��ESC��ͣ>\n");
-	cout << "ArkNights_Auto-����ͣ>" << endl;
+	printf("F1-Start, ESC-Stop>\n");
+	cout << "ArkNights_Auto-Stop>" << endl;
 	return 0;
 }
 
